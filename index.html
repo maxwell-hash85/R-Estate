@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REstate Mini</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <!-- AOS CSS -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #1b1a1a;
+  color: #f0f0f0;
+  padding: 2rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff;
+  gap: 0.6rem;
+  align-items: center;
+}
+.logo-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+nav a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+.search-bar {
+  padding: 0.6rem 1rem;
+  width: 100%;
+  max-width: 400px;
+  background: #2a2a2a;
+  color: #f0f0f0;
+  border: 1px solid #444;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  outline: none;
+}
+
+.property-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: #2a2a2a;
+  color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-body h3 {
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.card-body p {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  background: #00b98d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #009578;
+}
+
+@media (max-width: 500px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav a {
+    margin: 0.5rem 0;
+  }
+}
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+@keyframes fadeScaleGlow {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+    box-shadow: 0 0 0 rgba(0, 185, 141, 0);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 185, 141, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(0, 185, 141, 0);
+  }
+}
+
+.card {
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  animation-duration: 0.6s;
+}
+@keyframes fadeOutScale {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+
+.card.exit {
+  animation: fadeOutScale 0.4s forwards ease-in;
+}
+
+
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+  <img src="images/logo.png" alt="REstate Mini Logo" class="logo-img" />
+  <span>REstate Mini</span>
+</div>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Listings</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+  <div style="margin-bottom: 2rem;">
+  <input type="text" id="searchInput" class="search-bar" placeholder="Search by location..." />
+</div>
+
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+  <select id="locationFilter" class="search-bar" style="max-width: 200px;">
+    <option value="">All Locations</option>
+    <option value="lagos">Lagos</option>
+    <option value="abuja">Abuja</option>
+    <option value="osun">Osun</option>
+    <option value="ekiti">Ekiti</option>
+    <option value="uk">UK</option>
+  </select>
+
+  <select id="bedroomFilter" class="search-bar" style="max-width: 200px;">
+    <option value="">All Bedrooms</option>
+    <option value="2">2 Bedrooms</option>
+    <option value="3">3 Bedrooms</option>
+    <option value="4">4 Bedrooms</option>
+    <option value="5">5 Bedrooms</option>
+  </select>
+</div>
+
+ <section class="property-list">
+  <div class="card">
+    <img src="images/image2.jpg" alt="3-Bedroom Duplex in Lekki">
+    <div class="card-body" data-location="lagos" data-bedrooms="3"data-price="65000000"data-aos="zoom-in">
+      <h3>3-Bedroom Duplex</h3>
+      <p>Lekki, Lagos &mdash; ₦65,000,000</p>
+      <a class="btn" href="property.html">View Property</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="images/image 7.jpg" alt="2-Bedroom Apartment in Abuja">
+    <div class="card-body" data-location="abuja" data-bedrooms="2"data-price="35000000"data-aos="fade-right" data-aos-delay="100">
+      <h3>2-Bedroom Apartment</h3>
+      <p>Wuse, Abuja &mdash; ₦35,000,000</p>
+       <a class="btn" href="property.html">View Property</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="images/image100.jpg" alt="Modern Bungalow in Port Harcourt">
+    <div class="card-body" data-location="port-harcourt" data-bedrooms="3"data-price="28000000"data-aos="flip-up" data-aos-delay="200">
+      <h3>Modern Bungalow</h3>
+      <p>Port Harcourt &mdash; ₦28,000,000</p>
+      <a class="btn" href="property.html">View Property</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="images/image3.jpg" alt="Luxury Mansion in Maitama">
+    <div class="card-body" data-location="abuja" data-bedrooms="4"data-price="150000000"data-aos="zoom-in">
+      <h3>Luxury Mansion</h3>
+      <p>Maitama, Abuja &mdash; ₦150,000,000</p>
+      <a class="btn" href="#">View Property</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="3-Bedroom Flat in Ikeja">
+    <div class="card-body" data-location="lagos" data-bedrooms="3"data-price="42000000"data-aos="flip-up" data-aos-delay="200">
+      <h3>3-Bedroom Flat</h3>
+      <p>Ikeja, Lagos &mdash; ₦42,000,000</p>
+      <a class="btn" href="#">View Property</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/image20000.jpg" alt="2-Bedroom Apartment in Abuja">
+    <div class="card-body" data-location="osun" data-bedrooms="4"data-price="45000000"data-aos="fade-right" data-aos-delay="100">
+      <h3>4-Bedroom Apartment</h3>
+      <p>oshogbo, Osun &mdash; ₦45,000,000</p>
+      <a class="btn" href="#">View Property</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/imageinaa.jpg" alt="2-Bedroom Apartment in Abuja">
+    <div class="card-body" data-location="oun" data-bedrooms="2"data-price="35000000"data-aos="zoom-in">
+      <h3>Vintage Two Bedroom Apartment</h3>
+      <p>oshogbo, Osun &mdash; ₦35,000,000</p>
+      <a class="btn" href="#">View Property</a>
+    </div>
+  </div>
+   <div class="card">
+    <img src="images/iminadoooo.jpg" alt="2-Bedroom Apartment in Abuja">
+    <div class="card-body" data-location="ekiti" data-bedrooms="5"data-price="85000000"data-aos="flip-up" data-aos-delay="200">
+      <h3>Luxury 5-Bedroom Duplex</h3>
+      <p>Ado, Ekiti &mdash; ₦85,000,000</p>
+      <a class="btn" href="#">View Property</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="images/imagemaxx.jpg" alt="2-Bedroom Apartment in Abuja">
+    <div class="card-body" data-location="uk" data-bedrooms="3"data-price="25000000"data-aos="flip-up" data-aos-delay="200">
+      <h3>3-Bedroom Apartment</h3>
+      <p>Peckam Uk &mdash; ₦25,000,000</p>
+      <a class="btn" href="#">View Property</a>
+    </div>
+  </div>
+
+</section>
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const locationFilter = document.getElementById('locationFilter');
+  const bedroomFilter = document.getElementById('bedroomFilter');
+  const sortPrice = document.getElementById('sortPrice');
+  const propertyList = document.querySelector('.property-list');
+  let cards = Array.from(document.querySelectorAll('.card'));
+
+  const noResults = document.createElement('p');
+  noResults.textContent = "No properties found.";
+  noResults.style.color = "#ccc";
+  noResults.style.textAlign = "center";
+  noResults.style.marginTop = "2rem";
+  noResults.style.display = "none";
+  propertyList.after(noResults);
+
+ function applyAllFilters() {
+  const searchValue = searchInput.value.toLowerCase();
+  const locationValue = locationFilter.value.toLowerCase();
+  const bedroomValue = bedroomFilter.value;
+
+  let visibleCards = [];
+
+  cards.forEach(card => {
+    const body = card.querySelector('.card-body');
+    const location = (body.getAttribute('data-location') || '').toLowerCase();
+    const bedrooms = body.getAttribute('data-bedrooms');
+    const text = card.textContent.toLowerCase();
+
+    const matchesSearch = !searchValue || text.includes(searchValue);
+    const matchesLocation = !locationValue || location === locationValue;
+    const matchesBedrooms = !bedroomValue || bedrooms === bedroomValue;
+
+    const visible = matchesSearch && matchesLocation && matchesBedrooms;
+    card.style.display = visible ? 'block' : 'none';
+
+    if (visible) {
+      visibleCards.push(card);
+    }
+  });
+
+  // Animate with stagger
+  visibleCards.forEach((card, index) => {
+    card.style.animationName = 'none'; // reset animation
+    void card.offsetWidth; // force reflow
+    card.style.animationName = 'fadeScaleGlow';
+    card.style.animationDelay = `${index * 0.15}s`; // stagger delay 150ms
+  });
+
+  noResults.style.display = visibleCards.length ? 'none' : 'block';
+
+
+  applySorting(visibleCards);
+}
+
+
+  function applySorting(visibleCards) {
+    const sortOrder = sortPrice.value;
+    if (!sortOrder) return;
+
+    visibleCards.sort((a, b) => {
+      const priceA = parseInt(a.querySelector('.card-body').getAttribute('data-price'));
+      const priceB = parseInt(b.querySelector('.card-body').getAttribute('data-price'));
+      return sortOrder === 'low' ? priceA - priceB : priceB - priceA;
+    });
+
+    // Reorder DOM
+    visibleCards.forEach(card => propertyList.appendChild(card));
+  }
+
+  searchInput.addEventListener('input', applyAllFilters);
+  locationFilter.addEventListener('change', applyAllFilters);
+  bedroomFilter.addEventListener('change', applyAllFilters);
+  sortPrice.addEventListener('change', applyAllFilters);
+</script>
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800, // animation duration
+    easing: 'ease-in-out', // ease style
+    once: true, // whether animation should happen only once
+  });
+</script>
+
+
+</body>
+</html>
