@@ -185,6 +185,44 @@ nav a:hover {
 .card.exit {
   animation: fadeOutScale 0.4s forwards ease-in;
 }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+  background: #fff;
+  max-width: 500px;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  animation: popUp 0.4s ease-in-out;
+}
+
+.modal .close-btn {
+  position: absolute;
+  top: 20px; right: 30px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes popUp {
+  from { transform: scale(0.8); opacity: 0 }
+  to { transform: scale(1); opacity: 1 }
+}
+
 
 
 
@@ -233,7 +271,12 @@ nav a:hover {
     <div class="card-body aos-init aos-animate" data-location="lagos" data-bedrooms="3" data-price="65000000" data-aos="zoom-in">
       <h3>3-Bedroom Duplex</h3>
       <p>Lekki, Lagos — ₦65,000,000</p>
-      <a class="btn" href="http://127.0.0.1:5500/property.html">View Property</a>
+      <button class="btn openModalBtn"
+  data-title="3-Bedroom Duplex"
+  data-img="./REstate Mini_files/image2.jpg"
+  data-desc="Located in Lekki. Fully furnished, gated estate, 24/7 power.">
+  View Property
+</button>
     </div>
   </div>
 
@@ -242,7 +285,13 @@ nav a:hover {
     <div class="card-body aos-init aos-animate" data-location="abuja" data-bedrooms="2" data-price="35000000" data-aos="fade-right" data-aos-delay="100">
       <h3>2-Bedroom Apartment</h3>
       <p>Wuse, Abuja — ₦35,000,000</p>
-       <a class="btn" href="http://127.0.0.1:5500/property.html">View Property</a>
+       <button class="btn openModalBtn"
+  data-title="2-Bedroom Apartment"
+  data-img="./REstate Mini_files/image2.jpg"
+  data-desc="Located in Abuja. Fully furnished, gated estate, 24/7 power.">
+  View Property
+</button>
+
     </div>
   </div>
 
@@ -251,7 +300,13 @@ nav a:hover {
     <div class="card-body aos-init aos-animate" data-location="port-harcourt" data-bedrooms="3" data-price="28000000" data-aos="flip-up" data-aos-delay="200">
       <h3>Modern Bungalow</h3>
       <p>Port Harcourt — ₦28,000,000</p>
-      <a class="btn" href="http://127.0.0.1:5500/property.html">View Property</a>
+      <button class="btn openModalBtn"
+  data-title="Modern Bungalow"
+  data-img="./REstate Mini_files/image2.jpg"
+  data-desc="Located in Port-Harcourt. Fully furnished, gated estate, 24/7 power.">
+  View Property
+</button>
+
     </div>
   </div>
 
@@ -260,7 +315,13 @@ nav a:hover {
     <div class="card-body aos-init" data-location="abuja" data-bedrooms="4" data-price="150000000" data-aos="zoom-in">
       <h3>Luxury Mansion</h3>
       <p>Maitama, Abuja — ₦150,000,000</p>
-      <a class="btn" href="http://127.0.0.1:5500/index.html#">View Property</a>
+      <button class="btn openModalBtn"
+  data-title="Luxury Mansion"
+  data-img="./REstate Mini_files/image2.jpg"
+  data-desc="Located in Maitama, Abuja. Fully furnished, gated estate, 24/7 power.">
+  View Property
+</button>
+
     </div>
   </div>
 
@@ -269,7 +330,13 @@ nav a:hover {
     <div class="card-body aos-init" data-location="lagos" data-bedrooms="3" data-price="42000000" data-aos="flip-up" data-aos-delay="200">
       <h3>3-Bedroom Flat</h3>
       <p>Ikeja, Lagos — ₦42,000,000</p>
-      <a class="btn" href="http://127.0.0.1:5500/index.html#">View Property</a>
+      <button class="btn openModalBtn"
+  data-title="3-Bedroom Flat"
+  data-img="./REstate Mini_files/image2.jpg"
+  data-desc="Located in Ikeja, Lagos. Fully furnished, gated estate, 24/7 power.">
+  View Property
+</button>
+
     </div>
   </div>
   <div class="card">
@@ -277,7 +344,13 @@ nav a:hover {
     <div class="card-body aos-init" data-location="osun" data-bedrooms="4" data-price="45000000" data-aos="fade-right" data-aos-delay="100">
       <h3>4-Bedroom Apartment</h3>
       <p>oshogbo, Osun — ₦45,000,000</p>
-      <a class="btn" href="http://127.0.0.1:5500/index.html#">View Property</a>
+      <button class="btn openModalBtn"
+  data-title="4-Bedroom APartment"
+  data-img="./REstate Mini_files/image2.jpg"
+  data-desc="Located in oshogbo, Osun. Fully furnished, gated estate, 24/7 power.">
+  View Property
+</button>
+
     </div>
   </div>
   <div class="card">
@@ -285,7 +358,13 @@ nav a:hover {
     <div class="card-body aos-init" data-location="oun" data-bedrooms="2" data-price="35000000" data-aos="zoom-in">
       <h3>Vintage Two Bedroom Apartment</h3>
       <p>oshogbo, Osun — ₦35,000,000</p>
-      <a class="btn" href="http://127.0.0.1:5500/index.html#">View Property</a>
+      <button class="btn openModalBtn"
+  data-title="2-Bedroom APartment"
+  data-img="./REstate Mini_files/image2.jpg"
+  data-desc="Located in oshogbo, Osun. Fully furnished, gated estate, 24/7 power.">
+  View Property
+</button>
+
     </div>
   </div>
    <div class="card">
@@ -293,7 +372,13 @@ nav a:hover {
     <div class="card-body aos-init" data-location="ekiti" data-bedrooms="5" data-price="85000000" data-aos="flip-up" data-aos-delay="200">
       <h3>Luxury 5-Bedroom Duplex</h3>
       <p>Ado, Ekiti — ₦85,000,000</p>
-      <a class="btn" href="http://127.0.0.1:5500/index.html#">View Property</a>
+      <button class="btn openModalBtn"
+  data-title="5-Bedroom Duplex"
+  data-img="./REstate Mini_files/image2.jpg"
+  data-desc="Located in Ado-Ekiti. Fully furnished, gated estate, 24/7 power.">
+  View Property
+</button>
+
     </div>
   </div>
   <div class="card">
@@ -301,7 +386,13 @@ nav a:hover {
     <div class="card-body aos-init" data-location="uk" data-bedrooms="3" data-price="25000000" data-aos="flip-up" data-aos-delay="200">
       <h3>3-Bedroom Apartment</h3>
       <p>Peckam Uk — ₦25,000,000</p>
-      <a class="btn" href="http://127.0.0.1:5500/index.html#">View Property</a>
+      <button class="btn openModalBtn"
+  data-title="3-Bedroom Apartment"
+  data-img="./REstate Mini_files/image2.jpg"
+  data-desc="Located in Peckam. Fully furnished, gated estate, 24/7 power.">
+  View Property
+</button>
+
     </div>
   </div>
 
@@ -389,6 +480,24 @@ nav a:hover {
     easing: 'ease-in-out', // ease style
     once: true, // whether animation should happen only once
   });
+  const modal = document.getElementById("propertyModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalImage = document.getElementById("modalImage");
+const modalDesc = document.getElementById("modalDesc");
+const closeBtn = document.querySelector(".close-btn");
+
+document.querySelectorAll(".openModalBtn").forEach(button => {
+  button.addEventListener("click", () => {
+    modalTitle.textContent = button.getAttribute("data-title");
+    modalImage.src = button.getAttribute("data-img");
+    modalDesc.textContent = button.getAttribute("data-desc");
+    modal.style.display = "flex";
+  });
+});
+
+closeBtn.onclick = () => modal.style.display = "none";
+window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+
 </script>
 
 
@@ -446,6 +555,16 @@ nav a:hover {
 }
 
 </script>
+<!-- Dynamic Modal -->
+<div id="propertyModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <img id="modalImage" src="" alt="House" width="100%">
+    <p id="modalDesc"></p>
+    <button>Book a Visit</button>
+  </div>
+</div>
 
 
 </body></html>
