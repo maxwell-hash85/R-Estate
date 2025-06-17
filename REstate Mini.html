@@ -431,6 +431,20 @@ nav a:hover {
 	// ]]>
 
   // e.target.value
+  const validPages = ["index.html", "about.html", "contact.html", "properties.html"];
+
+  const currentPage = window.location.pathname.split("/").pop();
+
+  if (currentPage && !validPages.includes(currentPage)) {
+    window.location.href = "404.html";
+  function goBack() {
+  window.history.back()
+}
+    function goForward() {
+  window.history.forward()
+}
+  }
+
 </script>
 
 
