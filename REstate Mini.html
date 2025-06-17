@@ -437,12 +437,17 @@ nav a:hover {
 
   if (currentPage && !validPages.includes(currentPage)) {
     window.location.href = "404.html";
-  function goBack() {
+  }
+   function goBack() {
   window.history.back()
 }
     function goForward() {
   window.history.forward()
 }
+  if (window.history.length <= 1) {
+    document.querySelector('.back-btn').style.display = 'none';
+  } else {
+    document.querySelector('.back-btn').style.display = 'inline-block';
   }
 
 </script>
